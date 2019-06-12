@@ -115,7 +115,7 @@ function winPoint(player) {
             pointsNumber.innerHTML = Number(pointsNumber.innerHTML) + 1;
         } else {
             pointsNumber.innerHTML = Number(pointsNumber.innerHTML) + 1;
-            console.log(moreThan2PointsGap(player));
+
             if (moreThan2PointsGap(player)) {
                 winJeu(player);
                 return;
@@ -156,7 +156,18 @@ function winJeu(player) {
 
 function winSet(player) {
     tieBreak = false;
-    console.log('WIN SET', player);
+    if (player == 'player1') {
+        var setPlayer1 = '<span class="set">' + document.getElementById('games-number-player1').innerHTML + '</span>';
+        var setPlayer2 = '<span class="set set-losed">' + document.getElementById('games-number-player2').innerHTML + '</span>';
+    } else {
+        var setPlayer1 = '<span class="set set-losed">' + document.getElementById('games-number-player1').innerHTML + '</span>';
+        var setPlayer2 = '<span class="set">' + document.getElementById('games-number-player2').innerHTML + '</span>';
+    }
+    document.getElementById('score-player1').getElementsByClassName('second-part-score-bar')[0].innerHTML += setPlayer1;
+    document.getElementById('score-player2').getElementsByClassName('second-part-score-bar')[0].innerHTML += setPlayer2;
+
+    document.getElementById('games-number-player1').innerHTML = 0;
+    document.getElementById('games-number-player2').innerHTML = 0;
 }
 
 // Helpers
