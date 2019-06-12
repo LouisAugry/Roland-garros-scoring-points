@@ -2,7 +2,7 @@
 var typeMatch;
 var player1;
 var player2;
-var playerStartToServe;
+var playerService;
 var tieBreak = false;
 
 // Functions
@@ -18,8 +18,8 @@ function setPlayers() {
     player1 = document.getElementById('name-player1').value.toUpperCase();
     player2 = document.getElementById('name-player2').value.toUpperCase();
 
-    playerStartToServe = coinFlip();
-    document.getElementById('player-who-start').innerHTML = playerStartToServe;
+    playerService = coinFlip();
+    document.getElementById('player-who-start').innerHTML = playerService;
     document.getElementById('player-who-start').style.color = 'black';
 
     document.getElementById('second-step').toggleAttribute('hidden');
@@ -37,7 +37,7 @@ function startGame() {
     document.getElementById('btn-win-point-player1').innerHTML = player1;
     document.getElementById('btn-win-point-player2').innerHTML = player2;
 
-    if (playerStartToServe == player1) {
+    if (playerService == player1) {
         document.getElementsByClassName('serving')[1].style.visibility = 'hidden';
     } else {
         document.getElementsByClassName('serving')[0].style.visibility = 'hidden';
@@ -47,13 +47,25 @@ function startGame() {
     document.getElementById('score-bar').toggleAttribute('hidden');
 }
 
-function changeServer() {
-    if (document.getElementsByClassName('serving')[0].style.visibility == 'hidden') {
-        document.getElementsByClassName('serving')[0].style.visibility = 'visible';
-        document.getElementsByClassName('serving')[1].style.visibility = 'hidden';
+function changeServer(tieBreak) {
+    if (!tieBreak) {
+        if (playerService == player1) {
+            playerService = player2;
+            document.getElementsByClassName('serving')[1].style.visibility = 'visible';
+            document.getElementsByClassName('serving')[0].style.visibility = 'hidden';
+        } else {
+            playerService = player1;
+            document.getElementsByClassName('serving')[0].style.visibility = 'visible';
+            document.getElementsByClassName('serving')[1].style.visibility = 'hidden';
+        }
     } else {
-        document.getElementsByClassName('serving')[1].style.visibility = 'visible';
-        document.getElementsByClassName('serving')[0].style.visibility = 'hidden';
+        if (document.getElementsByClassName('serving')[0].style.visibility == 'hidden') {
+            document.getElementsByClassName('serving')[0].style.visibility = 'visible';
+            document.getElementsByClassName('serving')[1].style.visibility = 'hidden';
+        } else {
+            document.getElementsByClassName('serving')[1].style.visibility = 'visible';
+            document.getElementsByClassName('serving')[0].style.visibility = 'hidden';
+        }
     }
 }
 
@@ -99,21 +111,26 @@ function winPoint(player) {
                 break;
         }
     } else {
-        if (Number(pointsNumber.innerHTML) < 7) {
+        if (Number(pointsNumber.innerHTML) < 6) {
             pointsNumber.innerHTML = Number(pointsNumber.innerHTML) + 1;
         } else {
             pointsNumber.innerHTML = Number(pointsNumber.innerHTML) + 1;
+            console.log(moreThan2PointsGap(player));
             if (moreThan2PointsGap(player)) {
                 winJeu(player);
-            } else {
-                pointsNumber.innerHTML = Number(pointsNumber.innerHTML) + 1;
+                return;
             }
+        }
+        if (calculTotalPointsTieBreak(player) %2 == 1) {
+            changeServer(true);
         }
     }
 }
 
 function winJeu(player) {
     var gamesNumber = document.getElementById('games-number-'+player);
+
+    changeServer(false);
 
     document.getElementById('points-number-player1').innerHTML = 0;
     document.getElementById('points-number-player2').innerHTML = 0;
@@ -122,11 +139,12 @@ function winJeu(player) {
         gamesNumber.innerHTML = Number(gamesNumber.innerHTML) + 1;
     } else if (gamesNumber.innerHTML == '5') {
         gamesNumber.innerHTML = Number(gamesNumber.innerHTML) + 1;
-        console.log(moreThan2GamesGap(player));
+
         if (moreThan2GamesGap(player)) {
             winSet(player);
         } else if (checkTieBreak(player)) {
             tieBreak = true;
+            changeServer(false);
         }
     } else {
         gamesNumber.innerHTML = Number(gamesNumber.innerHTML) + 1;
@@ -170,6 +188,16 @@ function checkTieBreak(player) {
         return Number(gamesNumber.innerHTML) + Number(document.getElementById('games-number-player2').innerHTML) == 12;
     } else {
         return Number(gamesNumber.innerHTML) + Number(document.getElementById('games-number-player1').innerHTML) == 12;
+    }
+}
+
+function calculTotalPointsTieBreak(player) {
+    var pointsNumber = document.getElementById('points-number-'+player);
+
+    if (player == 'player1') {
+        return Number(pointsNumber.innerHTML) + Number(document.getElementById('points-number-player2').innerHTML);
+    } else {
+        return Number(pointsNumber.innerHTML) + Number(document.getElementById('points-number-player1').innerHTML);
     }
 }
 
