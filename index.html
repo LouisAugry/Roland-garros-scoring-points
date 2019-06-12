@@ -14,11 +14,11 @@
 
             <div id="first-step">
                 <h3>Choose the type of match</h3>
-                <button>Men's game</button>
-                <button>Women's game</button>
+                <button onclick="setTypeMatch('men')">Men's game</button>
+                <button onclick="setTypeMatch('women')">Women's game</button>
             </div>
 
-            <div id="second-step">
+            <div id="second-step" hidden>
                 <h3>Enter name of players</h3>
                 <label>
                     Player 1
@@ -29,16 +29,16 @@
                     Player 2
                     <input type="text" id="name-player2">
                 </label>
-                <button>Coin toss</button>
+                <button onclick="setPlayers()">Coin toss</button>
             </div>
 
-            <div id="third-step">
+            <div id="third-step" hidden>
                 <h4>After the coin toss, <span id="player-who-start">X</span> starts to serve</h4>
-                <button>Start game</button>
+                <button onclick="startGame()">Start game</button>
             </div>
         </div>
 
-        <div id="score-bar">
+        <div id="score-bar" hidden>
             <div id="score-player1">
                 <div class="first-part-score-bar">
                     <span class="serving">/</span>
