@@ -62,8 +62,14 @@
                 </div>
             </div>
 
-            <button onclick="winPoint('player1')" id="btn-win-point-player1">NAME</button>
-            <button onclick="winPoint('player2')" id="btn-win-point-player2">NAME</button>
+            <div id="btn-actions">
+                <button onclick="winPoint('player1')" id="btn-win-point-player1">NAME</button>
+                <button onclick="winPoint('player2')" id="btn-win-point-player2">NAME</button>
+            </div>
+
+            <h2 hidden id="winner">The winner is <span id="winner-name"></span> !</h2>
+
+            <button hidden id="btn-reset" onclick="reset()">Reset</button>
 
         </div>
 

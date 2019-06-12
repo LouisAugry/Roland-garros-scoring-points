@@ -20,7 +20,6 @@ function setPlayers() {
 
     playerService = coinFlip();
     document.getElementById('player-who-start').innerHTML = playerService;
-    document.getElementById('player-who-start').style.color = 'black';
 
     document.getElementById('second-step').toggleAttribute('hidden');
     document.getElementById('third-step').toggleAttribute('hidden');
@@ -156,6 +155,7 @@ function winJeu(player) {
 
 function winSet(player) {
     tieBreak = false;
+
     if (player == 'player1') {
         var setPlayer1 = '<span class="set">' + document.getElementById('games-number-player1').innerHTML + '</span>';
         var setPlayer2 = '<span class="set set-losed">' + document.getElementById('games-number-player2').innerHTML + '</span>';
@@ -163,11 +163,66 @@ function winSet(player) {
         var setPlayer1 = '<span class="set set-losed">' + document.getElementById('games-number-player1').innerHTML + '</span>';
         var setPlayer2 = '<span class="set">' + document.getElementById('games-number-player2').innerHTML + '</span>';
     }
+
     document.getElementById('score-player1').getElementsByClassName('second-part-score-bar')[0].innerHTML += setPlayer1;
     document.getElementById('score-player2').getElementsByClassName('second-part-score-bar')[0].innerHTML += setPlayer2;
 
+    var nbSets = document.getElementById('score-'+player).getElementsByClassName('second-part-score-bar')[0].children;
+    var nbSetsWin = 0;
+    for(let i=0; i<nbSets.length; i++) {
+        if (nbSets[i].classList.length == 1) { // so the set don't have the class 'set-lose' then it's a winning set
+            nbSetsWin++;
+        }
+    }
+
     document.getElementById('games-number-player1').innerHTML = 0;
     document.getElementById('games-number-player2').innerHTML = 0;
+
+    if (typeMatch == 'men' && nbSetsWin == 3) {
+        winMatch(player);
+        return;
+    }
+
+    if (typeMatch == 'women' && nbSetsWin == 2) {
+        winMatch(player);
+        return;
+    }
+}
+
+function winMatch(player) {
+    document.getElementsByClassName('first-part-score-bar')[0].getElementsByClassName('serving')[0].style.visibility = 'hidden';
+    document.getElementsByClassName('first-part-score-bar')[1].getElementsByClassName('serving')[0].style.visibility = 'hidden';
+    document.getElementsByClassName('third-part-score-bar')[0].style.visibility = 'hidden';
+    document.getElementsByClassName('third-part-score-bar')[1].style.visibility = 'hidden';
+    document.getElementById('btn-actions').toggleAttribute('hidden');
+    document.getElementById('btn-reset').toggleAttribute('hidden');
+    document.getElementById('winner').toggleAttribute('hidden');
+
+    if (player == 'player1') {
+        document.getElementById('winner-name').innerHTML = player1;
+    } else {
+        document.getElementById('winner-name').innerHTML = player2;
+    }
+}
+
+function reset() {
+    typeMatch = null;
+    player1 = null;
+    player2 = null;
+    playerService = null;
+    tieBreak = false;
+
+    document.getElementById('score-bar').toggleAttribute('hidden');
+    document.getElementById('first-step').toggleAttribute('hidden');
+    document.getElementById('name-player1').value = '';
+    document.getElementById('name-player2').value = '';
+    document.getElementById('score-player1').getElementsByClassName('second-part-score-bar')[0].innerHTML = '';
+    document.getElementById('score-player2').getElementsByClassName('second-part-score-bar')[0].innerHTML = '';
+    document.getElementsByClassName('third-part-score-bar')[0].style.visibility = 'visible';
+    document.getElementsByClassName('third-part-score-bar')[1].style.visibility = 'visible';
+    document.getElementById('btn-actions').toggleAttribute('hidden');
+    document.getElementById('btn-reset').toggleAttribute('hidden');
+    document.getElementById('winner').toggleAttribute('hidden');
 }
 
 // Helpers
