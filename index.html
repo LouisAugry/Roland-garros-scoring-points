@@ -4,10 +4,65 @@
     <head>
         <meta charset="UTF-8">
         <title>Rolland Garos - Scoring points</title>
+        <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
 
+        <div id="parameters">
+            <h1>Welcome to the scoring points for Rolland Garos</h1>
+
+            <div id="first-step">
+                <h3>Choose the type of match</h3>
+                <button>Men's game</button>
+                <button>Women's game</button>
+            </div>
+
+            <div id="second-step">
+                <h3>Enter name of players</h3>
+                <label>
+                    Player 1
+                    <input type="text" id="name-player1">
+                </label>
+                <p>VS</p>
+                <label>
+                    Player 2
+                    <input type="text" id="name-player2">
+                </label>
+                <button>Coin toss</button>
+            </div>
+
+            <div id="third-step">
+                <h4>After the coin toss, <span id="player-who-start">X</span> starts to serve</h4>
+                <button>Start game</button>
+            </div>
+        </div>
+
+        <div id="score-bar">
+            <div id="score-player1">
+                <div class="first-part-score-bar">
+                    <span>/</span>
+                    <span id="score-bar-name-player1">Name</span>
+                </div>
+                <div class="second-part-score-bar">
+                    <span id="games-number-player1">0</span>
+                    <span id="points-number-players1">0</span>
+                </div>
+            </div>
+            <div id="score-player2">
+                <div class="first-part-score-bar">
+                    <span>/</span>
+                    <span id="score-bar-name-player2">Name</span>
+                </div>
+                <div class="second-part-score-bar">
+                    <span id="games-number-player2">0</span>
+                    <span id="points-number-players2">0</span>
+                </div>
+            </div>
+        </div>
+
     </body>
+
+    <script src="script.js"></script>
 
 </html>
