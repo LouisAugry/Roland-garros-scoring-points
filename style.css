@@ -1,20 +1,78 @@
 @font-face {
     font-family: 'RGfont';
-    src: url('rg-font.woff2') format('woff2')
+    src: url('fonts/rg-font.woff2') format('woff2')
+}
+
+@font-face {
+    font-family: 'RGfontBold';
+    src: url('fonts/rg-bold-font.woff2') format('woff2')
 }
 
 html {
     background-color: #D3521F;
     color: white;
-    font-family: 'RGFront', Arial, Helvetica, sans-serif;
+    font-family: 'RGfontBold', Arial, Helvetica, sans-serif;
+}
+
+.first-part-score-bar, .second-part-score-bar {
+    display: inline-block;
 }
 
 .first-part-score-bar {
     background-color: #00503C;
     color: white;
+    display: inline-block;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 150px;
 }
 
 .second-part-score-bar {
+    background-color: #00503C;
+    color: white;
+    display: inline-block;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-left: -4px;
+}
+
+.second-part-score-bar span {
+    margin-left: 7px;
+    margin-right: 7px;
+}
+
+.third-part-score-bar {
+    display: inline-block;
+}
+
+.third-part-score-bar span {
     background-color: white;
     color: black;
+    display: inline-block;
+    margin-left: 1px;
+    width: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.third-part-score-bar span:nth-of-type(2) {
+    font-family: 'RGfont';
+}
+
+.set {
+    margin-left: 1px;
+    width: 25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+
+.set-lose {
+    opacity: .5;
+}
+
+.serving {
+    margin-left: 5px;
+    margin-right: 2px;
 }
