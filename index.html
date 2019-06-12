@@ -3,14 +3,14 @@
 
     <head>
         <meta charset="UTF-8">
-        <title>Rolland Garos - Scoring points</title>
+        <title>Roland Garros - Scoring points</title>
         <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
 
         <div id="parameters">
-            <h1>Welcome to the scoring points for Rolland Garos</h1>
+            <h1>Welcome to the scoring points for Roland Garros</h1>
 
             <div id="first-step">
                 <h3>Choose the type of match</h3>
@@ -45,12 +45,12 @@
                     <span id="score-bar-name-player1">NAME</span>
                 </div>
                 <div class="second-part-score-bar">
-                    <span class="set">6</span>
-                    <span class="set">4</span>
+                    <!-- <span class="set">6</span>
+                    <span class="set">4</span> -->
                 </div>
                 <div class="third-part-score-bar">
-                    <span id="games-number-player1">5</span>
-                    <span id="points-number-players1">0</span>
+                    <span id="games-number-player1">0</span>
+                    <span id="points-number-player1">0</span>
                 </div>
             </div>
             <div id="score-player2">
@@ -59,14 +59,18 @@
                     <span id="score-bar-name-player2">NAME</span>
                 </div>
                 <div class="second-part-score-bar">
-                    <span class="set set-lose">3</span>
-                    <span class="set">6</span>
+                    <!-- <span class="set set-lose">3</span>
+                    <span class="set">6</span> -->
                 </div>
                 <div class="third-part-score-bar">
                     <span id="games-number-player2">0</span>
-                    <span id="points-number-players2">AV</span>
+                    <span id="points-number-player2">0</span>
                 </div>
             </div>
+
+            <button onclick="winPoint('player1')" id="btn-win-point-player1">NAME</button>
+            <button onclick="winPoint('player2')" id="btn-win-point-player2">NAME</button>
+
         </div>
 
     </body>
