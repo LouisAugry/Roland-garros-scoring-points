@@ -8,14 +8,37 @@
     src: url('fonts/rg-bold-font.woff2') format('woff2')
 }
 
-html {
+body {
     background-color: #D3521F;
     color: white;
     font-family: 'RGfontBold', Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+button {
+    background-color: #00503C;
+    color: white;
+    border-radius: 3px;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    transition: all .2s ease;
+}
+
+img {
+    width: 200px;
+    margin-bottom: 30px;
 }
 
 #player-who-start, #winner-name {
     color: black;
+}
+
+#btn-actions {
+    margin-top: 30px;
+}
+
+#score-bar {
+    text-align: initial;
 }
 
 .first-part-score-bar, .second-part-score-bar {
